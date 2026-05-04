@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hugo Valencia · Abogado Corporativo & Secop 2</title>
+<meta name="description" content="Abogado especialista en contratación pública, Secop 2 y derecho corporativo. Capacitación in-house y asesoría jurídica para empresas en Colombia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── TOKENS ───────────────────────────────────────── */
+:root {
+  --bg-dark:    #06080F;
+  --bg-card:    #0C0E18;
+  --bg-card2:   #111420;
+  --bg-light:   #F2F2F0;
+  --gold:       #8A9DB8;   /* platino — accent principal */
+  --gold-lt:    #B0C4DE;   /* platino claro              */
+  --gold-dim:   rgba(138,157,184,.18);
+  --blue:       #2A3F60;
+  --blue-glow:  rgba(42,63,96,.4);
+  --text:       #E8EAF0;
+  --text2:      rgba(232,234,240,.52);
+  --text3:      rgba(232,234,240,.26);
+  --border:     rgba(255,255,255,.06);
+  --border2:    rgba(255,255,255,.11);
+  --serif:      'Cormorant Garamond', Georgia, serif;
+  --sans:       'DM Sans', system-ui, sans-serif;
+  --ease:       cubic-bezier(.22,.68,0,1.2);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg-dark); color: var(--text); overflow-x: hidden; }
+
+/* ── NAV ──────────────────────────────────────────── */
+nav {
+  position: fixed; inset: 0 0 auto; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 2.5rem;
+  background: rgba(7,8,14,.7);
+  backdrop-filter: blur(20px);
+  border-bottom: .5px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: .01em;
+  color: var(--text);
+}
+.nav-logo b { color: var(--gold); font-weight: 500; }
+.nav-links { display: flex; gap: 2.2rem; }
+.nav-links a {
+  font-size: .8rem; font-weight: 400;
+  color: var(--text2); text-decoration: none;
+  letter-spacing: .08em; text-transform: uppercase;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-pill {
+  display: inline-flex; align-items: center; gap: .55rem;
+  background: var(--gold); color: #07080E;
+  font-family: var(--sans); font-size: .8rem; font-weight: 500;
+  padding: .55rem 1.4rem .55rem 1rem;
+  border-radius: 100px; text-decoration: none;
+  letter-spacing: .03em; transition: background .2s, transform .2s;
+}
+.nav-pill:hover { background: var(--gold-lt); transform: translateY(-1px); }
+.nav-pill svg { width: 14px; height: 14px; }
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero {
+  position: relative; height: 100vh; min-height: 680px;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── CINEMATIC MESH SYSTEM ───────────────────────── */
+/* Base dark canvas */
+.hero-mesh-base {
+  position: absolute; inset: 0;
+  background: #07080E;
+}
+
+/* Each orb is an absolutely-positioned div that moves independently */
+.mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Orb 1 — large steel blue, drifts top-center → right */
+.orb-1 {
+  width: 75vw; height: 65vh;
+  top: -15%; left: 10%;
+  background: radial-gradient(ellipse at center,
+    rgba(40,65,120,.65) 0%,
+    rgba(28,48,95,.38)  45%,
+    transparent 75%);
+  animation: orb1 14s ease-in-out infinite alternate;
+}
+@keyframes orb1 {
+  0%   { transform: translate(0,    0)    scale(1);    opacity: .85; }
+  33%  { transform: translate(12%,  8%)   scale(1.08); opacity: 1;   }
+  66%  { transform: translate(-6%,  14%)  scale(.95);  opacity: .75; }
+  100% { transform: translate(8%,  -6%)   scale(1.05); opacity: .9;  }
+}
+
+/* Orb 2 — deep navy, drifts bottom-left */
+.orb-2 {
+  width: 55vw; height: 55vh;
+  bottom: -10%; left: -5%;
+  background: radial-gradient(ellipse at center,
+    rgba(30,50,110,.52) 0%,
+    rgba(20,36,80,.28)  45%,
+    transparent 75%);
+  animation: orb2 18s ease-in-out infinite alternate;
+}
+@keyframes orb2 {
+  0%   { transform: translate(0,   0)   scale(1);    opacity: .7;  }
+  40%  { transform: translate(15%, -8%) scale(1.12); opacity: .9;  }
+  70%  { transform: translate(5%,  10%) scale(.92);  opacity: .65; }
+  100% { transform: translate(-8%, -5%) scale(1.06); opacity: .8;  }
+}
+
+/* Orb 3 — platinum shimmer, top right */
+.orb-3 {
+  width: 40vw; height: 40vh;
+  top: 5%; right: -8%;
+  background: radial-gradient(ellipse at center,
+    rgba(138,157,184,.22) 0%,
+    rgba(100,120,150,.11) 45%,
+    transparent 75%);
+  animation: orb3 11s ease-in-out infinite alternate;
+}
+@keyframes orb3 {
+  0%   { transform: translate(0,   0)    scale(1);    opacity: .8;  }
+  50%  { transform: translate(-10%, 12%) scale(1.15); opacity: 1;   }
+  100% { transform: translate(6%,  -8%)  scale(.9);   opacity: .6;  }
+}
+
+/* Orb 4 — bright steel core, center */
+.orb-4 {
+  width: 30vw; height: 30vh;
+  top: 30%; left: 25%;
+  background: radial-gradient(ellipse at center,
+    rgba(70,100,160,.4) 0%,
+    rgba(45,70,120,.2)  45%,
+    transparent 70%);
+  animation: orb4 9s ease-in-out infinite alternate;
+}
+@keyframes orb4 {
+  0%   { transform: translate(0,   0)   scale(1);   opacity: .6;  }
+  50%  { transform: translate(8%, -12%) scale(1.2); opacity: .85; }
+  100% { transform: translate(-5%, 8%)  scale(.85); opacity: .5;  }
+}
+
+/* Orb 5 — cool silver, bottom right */
+.orb-5 {
+  width: 45vw; height: 38vh;
+  bottom: 0%; right: 5%;
+  background: radial-gradient(ellipse at center,
+    rgba(120,140,175,.16) 0%,
+    rgba(90,110,145,.09)  45%,
+    transparent 70%);
+  animation: orb5 22s ease-in-out infinite alternate;
+}
+@keyframes orb5 {
+  0%   { transform: translate(0,   0)    scale(1);    opacity: .7;  }
+  35%  { transform: translate(-12%, -6%) scale(1.1);  opacity: .95; }
+  70%  { transform: translate(5%,  -14%) scale(.95);  opacity: .6;  }
+  100% { transform: translate(-6%,  8%)  scale(1.08); opacity: .85; }
+}
+
+/* Overall mesh container for breathing */
+.hero-mesh-wrap {
+  position: absolute; inset: 0;
+  animation: breathe 16s ease-in-out infinite alternate;
+}
+@keyframes breathe {
+  0%   { filter: brightness(1)    saturate(1);    }
+  50%  { filter: brightness(1.12) saturate(1.08); }
+  100% { filter: brightness(.95)  saturate(.95);  }
+}
+
+/* grain — cinematic film texture */
+.hero-grain {
+  position: absolute; inset: 0; pointer-events: none; opacity: .22;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat; background-size: 160px 160px;
+  animation: grainShift 0.12s steps(1) infinite;
+}
+@keyframes grainShift {
+  0%  { background-position: 0 0; }
+  20% { background-position: -40px 20px; }
+  40% { background-position: 20px -30px; }
+  60% { background-position: -20px 40px; }
+  80% { background-position: 30px -10px; }
+}
+
+/* fine grid lines */
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) .5px, transparent .5px),
+    linear-gradient(90deg, rgba(255,255,255,.04) .5px, transparent .5px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 20%, transparent 100%);
+  animation: gridDrift 30s linear infinite;
+}
+@keyframes gridDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 80px 80px; }
+}
+
+/* deep vignette */
+.hero-vignette {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 110% 90% at 50% 50%, transparent 35%, rgba(7,8,14,.92) 100%),
+    linear-gradient(to bottom, rgba(7,8,14,.5) 0%, transparent 18%, transparent 75%, rgba(7,8,14,.8) 100%);
+}
+
+.hero-content {
+  position: relative; z-index: 10;
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 2.5rem 0;
+  padding-top: 7rem;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-size: .72rem; font-weight: 400;
+  color: var(--gold); letter-spacing: .18em; text-transform: uppercase;
+  margin-bottom: 1.6rem;
+  animation: fadeUp .8s var(--ease) both;
+}
+.hero-eyebrow::before {
+  content: ''; width: 22px; height: .5px; background: var(--gold);
+}
+
+.hero-h1 {
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 10vw, 9.5rem);
+  font-weight: 300;
+  line-height: .95;
+  letter-spacing: -.03em;
+  color: var(--text);
+  margin-bottom: 2rem;
+  animation: fadeUp .8s .1s var(--ease) both;
+}
+.hero-h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-size: clamp(.95rem, 1.6vw, 1.1rem);
+  font-weight: 300;
+  color: var(--text2);
+  max-width: 480px;
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+  animation: fadeUp .8s .2s var(--ease) both;
+}
+
+.hero-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadeUp .8s .3s var(--ease) both;
+}
+
+/* pill button */
+.pill-dark {
+  display: inline-flex; align-items: center; gap: .65rem;
+  background: var(--text); color: #07080E;
+  font-family: var(--sans); font-size: .88rem; font-weight: 500;
+  padding: .75rem 1rem .75rem 1.8rem;
+  border-radius: 100px; text-decoration: none;
+  letter-spacing: .01em; transition: all .2s;
+}
+.pill-dark:hover { background: var(--gold-lt); transform: translateY(-1px); }
+.pill-dark .circle {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: #07080E; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.pill-dark svg { width: 15px; height: 15px; }
+
+.pill-ghost {
+  display: inline-flex; align-items: center; gap: .65rem;
+  background: transparent; color: var(--text);
+  font-family: var(--sans); font-size: .88rem; font-weight: 400;
+  padding: .75rem 1.8rem;
+  border-radius: 100px; text-decoration: none;
+  border: .5px solid var(--border2);
+  letter-spacing: .01em; transition: all .2s;
+}
+.pill-ghost:hover { border-color: rgba(255,255,255,.3); transform: translateY(-1px); }
+
+/* ── MARQUEE STRIP ───────────────────────────────── */
+.marquee-strip {
+  position: relative; z-index: 10;
+  border-top: .5px solid var(--border);
+  padding: 1.5rem 0;
+  overflow: hidden;
+  background: rgba(7,8,14,.5);
+  backdrop-filter: blur(12px);
+}
+.marquee-track {
+  display: flex; width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track span {
+  display: inline-block;
+  color: var(--text3);
+  white-space: nowrap;
+  margin: 0 2.5rem;
+  font-size: .78rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: color .3s;
+}
+.marquee-track span:hover { color: var(--text2); }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── SECTION BASE ────────────────────────────────── */
+section { padding: 7rem 2.5rem; }
+.container { max-width: 1200px; margin: 0 auto; }
+
+.s-label {
+  font-size: .7rem; font-weight: 400;
+  color: var(--gold); letter-spacing: .18em; text-transform: uppercase;
+  display: flex; align-items: center; gap: .6rem;
+  margin-bottom: .9rem;
+}
+.s-label::after { content: ''; width: 30px; height: .5px; background: var(--gold); }
+
+.s-title {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -.025em;
+}
+.s-title em { font-style: italic; color: var(--gold); }
+
+.s-body {
+  font-size: 1rem; font-weight: 300;
+  color: var(--text2); line-height: 1.85;
+}
+
+/* ── SERVICES SECTION (light) ────────────────────── */
+.services { background: var(--bg-light); }
+
+.services .s-label { color: #3A5070; }
+.services .s-label::after { background: #3A5070; }
+.services .s-title { color: #0A0C15; }
+.services .s-title em { color: #2A3F60; }
+.services .s-body { color: rgba(10,12,21,.48); }
+
+.services-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: end;
+  margin-bottom: 4rem;
+}
+@media(max-width:700px) { .services-header { grid-template-columns: 1fr; gap: 2rem; } }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: rgba(13,15,24,.12);
+}
+@media(max-width:900px) { .services-grid { grid-template-columns: 1fr; } }
+
+.svc-card {
+  background: var(--bg-light);
+  padding: 2.8rem 2.5rem;
+  transition: background .2s;
+  position: relative;
+  overflow: hidden;
+}
+.svc-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(90,120,160,.45), transparent);
+  opacity: 0; transition: opacity .3s;
+}
+.svc-card:hover { background: #ECEAE5; }
+.svc-card:hover::before { opacity: 1; }
+
+.svc-num {
+  font-family: var(--serif);
+  font-size: 3.5rem; font-weight: 300;
+  color: rgba(13,15,24,.1);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.svc-card h3 {
+  font-family: var(--serif);
+  font-size: 1.5rem; font-weight: 400;
+  color: #0D0F18;
+  letter-spacing: -.01em;
+  margin-bottom: .8rem;
+  line-height: 1.2;
+}
+.svc-card p { font-size: .88rem; color: rgba(13,15,24,.5); line-height: 1.8; }
+
+/* ── INHOUSE SECTION ─────────────────────────────── */
+.inhouse { background: var(--bg-dark); padding: 7rem 2.5rem; }
+
+.inhouse-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: start;
+}
+@media(max-width:780px) { .inhouse-inner { grid-template-columns: 1fr; gap: 3rem; } }
+
+.inhouse-visual {
+  position: relative; border-radius: 6px;
+  overflow: hidden; min-height: 520px;
+  background: var(--bg-card2);
+  border: .5px solid var(--border2);
+}
+.inhouse-visual::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 70% at 40% 60%, rgba(42,63,96,.6) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(138,157,184,.18) 0%, transparent 60%);
+}
+.inhouse-badge {
+  position: absolute; top: 1.8rem; left: 1.8rem;
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(7,8,14,.7); backdrop-filter: blur(12px);
+  border: .5px solid var(--border2);
+  border-radius: 100px;
+  padding: .45rem 1rem;
+  font-size: .72rem; color: var(--gold);
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.inhouse-metric {
+  position: absolute; bottom: 2rem; left: 2rem; right: 2rem;
+  background: rgba(7,8,14,.75); backdrop-filter: blur(20px);
+  border: .5px solid var(--border2); border-radius: 6px;
+  padding: 1.8rem 2rem;
+  display: flex; gap: 3rem;
+}
+.metric-item .m-val {
+  font-family: var(--serif);
+  font-size: 2.4rem; font-weight: 300;
+  color: var(--text); line-height: 1;
+  margin-bottom: .2rem;
+}
+.metric-item .m-val span { color: var(--gold); }
+.metric-item .m-label {
+  font-size: .72rem; color: var(--text3);
+  text-transform: uppercase; letter-spacing: .1em;
+}
+
+.inhouse-content { padding-top: 1rem; }
+.inhouse-content .s-title { margin-bottom: 1.4rem; }
+.inhouse-content .s-body { margin-bottom: 2rem; }
+
+.pricing-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin: 2rem 0;
+}
+@media(max-width:500px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+.pricing-card {
+  background: var(--bg-card); border: .5px solid var(--border);
+  border-radius: 4px; padding: 1.4rem 1.5rem;
+  transition: border-color .2s;
+}
+.pricing-card:hover { border-color: var(--border2); }
+.pricing-card .pc-icon {
+  font-size: 1.2rem; margin-bottom: .7rem;
+}
+.pricing-card h4 {
+  font-family: var(--serif);
+  font-size: 1.05rem; font-weight: 400;
+  margin-bottom: .3rem; letter-spacing: -.01em;
+}
+.pricing-card p { font-size: .8rem; color: var(--text3); line-height: 1.65; }
+
+.checklist { list-style: none; margin-bottom: 2.5rem; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: .9rem;
+  font-size: .88rem; color: var(--text2);
+  padding: .55rem 0;
+  border-bottom: .5px solid var(--border);
+  line-height: 1.6;
+}
+.checklist li::before {
+  content: '→';
+  color: var(--gold); font-size: .75rem;
+  margin-top: .15rem; flex-shrink: 0;
+}
+
+/* ── ABOUT (light) ───────────────────────────────── */
+.about { background: var(--bg-light); }
+.about-inner {
+  display: grid; grid-template-columns: 1fr 1.5fr;
+  gap: 7rem; align-items: start;
+}
+@media(max-width:780px) { .about-inner { grid-template-columns: 1fr; gap: 3rem; } }
+
+.about-photo {
+  width: 100%; aspect-ratio: 3/4;
+  background: linear-gradient(160deg, #1A2236 0%, #0C1120 100%);
+  border-radius: 4px; position: relative;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: .7rem;
+}
+.about-photo::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 50% 30%, rgba(70,100,150,.35) 0%, transparent 70%);
+}
+.photo-hint {
+  position: relative; z-index: 1;
+  font-size: .75rem; color: rgba(255,255,255,.35);
+  text-align: center; padding: 0 2rem;
+  letter-spacing: .06em; text-transform: uppercase;
+}
+.photo-icon-big { font-size: 2.5rem; opacity: .2; position: relative; z-index: 1; }
+
+.about .s-title { color: #0A0C15; }
+.about .s-title em { color: #2A3F60; font-style: italic; }
+.about .s-label { color: #3A5070; }
+.about .s-label::after { background: #3A5070; }
+.about .s-body { color: rgba(10,12,21,.48); }
+
+.about-right .s-body { margin-bottom: 1.2rem; }
+
+.timeline { margin-top: 2.5rem; }
+.tl-item {
+  display: flex; gap: 1.5rem;
+  padding: 1.4rem 0;
+  border-top: .5px solid rgba(13,15,24,.1);
+}
+.tl-year {
+  font-family: var(--serif);
+  font-size: 1.1rem; font-weight: 300;
+  color: rgba(13,15,24,.3); flex-shrink: 0; min-width: 58px;
+}
+.tl-text {
+  font-size: .88rem;
+  color: rgba(13,15,24,.6);
+  line-height: 1.7;
+}
+.tl-text b { color: #0D0F18; font-weight: 500; }
+
+/* ── WA CTA ──────────────────────────────────────── */
+.wa-section {
+  background: var(--bg-dark);
+  padding: 7rem 2.5rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.wa-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(42,63,96,.25) 0%, transparent 70%);
+}
+.wa-card {
+  position: relative; z-index: 1;
+  max-width: 700px; margin: 0 auto;
+}
+.wa-section .s-title { margin-bottom: 1rem; font-size: clamp(2.4rem, 5vw, 4.5rem); }
+.wa-section .s-body { margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+.wa-section .s-label { justify-content: center; }
+
+.btn-wa {
+  display: inline-flex; align-items: center; gap: .8rem;
+  background: #25D366; color: #fff;
+  font-family: var(--sans); font-size: .92rem; font-weight: 500;
+  padding: .9rem 1rem .9rem 2rem;
+  border-radius: 100px; text-decoration: none;
+  letter-spacing: .01em; transition: all .2s;
+}
+.btn-wa:hover { background: #1DBE5A; transform: translateY(-2px); }
+.btn-wa .circle {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(0,0,0,.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.btn-wa svg { width: 18px; height: 18px; }
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer {
+  background: #07080E;
+  border-top: .5px solid var(--border);
+  padding: 2rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-logo {
+  font-family: var(--serif); font-size: 1rem; font-weight: 300;
+  color: var(--text2);
+}
+.footer-logo b { color: var(--gold); font-weight: 400; }
+footer p { font-size: .75rem; color: var(--text3); }
+
+/* ── ANIMATIONS ──────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media(max-width: 640px) {
+  .nav-links { display: none; }
+  nav { padding: 1rem 1.5rem; }
+  section { padding: 5rem 1.5rem; }
+  .hero-content { padding: 0 1.5rem 0; padding-top: 6rem; }
+  .hero-h1 { font-size: 3.8rem; }
+  .inhouse { padding: 5rem 1.5rem; }
+  .wa-section { padding: 5rem 1.5rem; }
+  footer { padding: 1.5rem; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────── -->
+<nav>
+  <div class="nav-logo">Hugo <b>Valencia</b></div>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#capacitacion">In-House</a>
+    <a href="#sobre-mi">Sobre mí</a>
+  </div>
+  <a href="https://wa.me/57TUNUMERO?text=Hola%20Hugo%2C%20quiero%20consultar%20sobre%20tus%20servicios" class="nav-pill" target="_blank">
+    Consultar ahora
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 8h10M9 4l4 4-4 4"/>
+    </svg>
+  </a>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-mesh-base"></div>
+  <div class="hero-mesh-wrap">
+    <div class="mesh-orb orb-1"></div>
+    <div class="mesh-orb orb-2"></div>
+    <div class="mesh-orb orb-3"></div>
+    <div class="mesh-orb orb-4"></div>
+    <div class="mesh-orb orb-5"></div>
+  </div>
+  <div class="hero-grid"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-vignette"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Abogado Corporativo · Secop 2 · Colombia</div>
+    <h1 class="hero-h1">
+      Hugo<br>
+      <em>Valencia</em><br>
+      Abogado
+    </h1>
+    <p class="hero-sub">
+      Más de 8 años asesorando empresas en contratación pública y derecho corporativo. Capacito equipos in-house y acompaño a emprendedores en cada etapa jurídica de su negocio.
+    </p>
+    <div class="hero-actions">
+      <a href="#capacitacion" class="pill-dark">
+        Capacitación in-house
+        <span class="circle">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </span>
+      </a>
+      <a href="https://wa.me/57TUNUMERO?text=Hola%20Hugo%2C%20necesito%20asesor%C3%ADa%20jur%C3%ADdica" class="pill-ghost" target="_blank">
+        Asesoría jurídica
+      </a>
+    </div>
+  </div>
+
+  <!-- Marquee strip at bottom of hero -->
+  <div class="marquee-strip">
+    <div class="marquee-track" id="mq">
+      <span>Contratación Pública</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Secop 2</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Licitación</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Derecho Corporativo</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Constitución de Empresas</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Registro de Marca</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Mitigación de Riesgos</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Estatutos Corporativos</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Estudios Previos</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <!-- duplicated for seamless loop -->
+      <span>Contratación Pública</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Secop 2</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Licitación</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Derecho Corporativo</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Constitución de Empresas</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Registro de Marca</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Mitigación de Riesgos</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Estatutos Corporativos</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+      <span>Estudios Previos</span>
+      <span style="color:var(--gold);opacity:.6">·</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ───────────────────────────────────── -->
+<section class="services" id="servicios">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="s-label">Lo que hago</div>
+        <h2 class="s-title">Derecho que<br><em>construye</em> negocios</h2>
+      </div>
+      <p class="s-body">
+        No solo te digo qué está permitido — te muestro cómo estructurar tu empresa para aprovechar cada oportunidad legal disponible, desde contratar con el Estado hasta proteger tu marca.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-num">01</div>
+        <h3>Contratación Pública & Secop 2</h3>
+        <p>Acompañamiento integral para que tu empresa participe y gane en procesos de licitación, selección abreviada y mínima cuantía a través de la plataforma Secop 2.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">02</div>
+        <h3>Creación y Estructuración Empresarial</h3>
+        <p>Constitución ante Cámara y Comercio, estatutos a medida, modalidades de asociación, y estructura jurídica pensada para escalar sin fricciones legales.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">03</div>
+        <h3>Registro de Marca & Propiedad Intelectual</h3>
+        <p>Solicitud ante la SIC, vigilancia de marca, clasificación niza y estrategia de protección para que nadie pueda apropiarse de lo que construiste.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">04</div>
+        <h3>Contratos & Mitigación de Riesgos</h3>
+        <p>Revisión, redacción y negociación de contratos comerciales con enfoque en identificar riesgos antes de que se conviertan en conflictos.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">05</div>
+        <h3>Viabilidad Jurídica de Proyectos</h3>
+        <p>Análisis de factibilidad legal, estudios previos y revisión normativa para que tu proyecto arranque con certeza y sin sorpresas regulatorias.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">06</div>
+        <h3>Asesoría Corporativa Continua</h3>
+        <p>Acompañamiento periódico a empresas y equipos directivos para toma de decisiones con respaldo jurídico permanente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INHOUSE ─────────────────────────────────────── -->
+<section class="inhouse" id="capacitacion">
+  <div class="container">
+    <div class="inhouse-inner">
+
+      <div class="inhouse-visual">
+        <div class="inhouse-badge">● Servicio principal</div>
+        <div class="inhouse-metric">
+          <div class="metric-item">
+            <div class="m-val">8<span>+</span></div>
+            <div class="m-label">Años en Secop 2</div>
+          </div>
+          <div class="metric-item">
+            <div class="m-val">In<span>-</span>House</div>
+            <div class="m-label">Modelo presencial y virtual</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inhouse-content">
+        <div class="s-label">Capacitación in-house</div>
+        <h2 class="s-title">Tu equipo de contratación,<br>listo para <em>ganar</em></h2>
+        <p class="s-body">
+          Capacito equipos internos de contratación directamente en tu empresa — presencial o virtual. Un conocimiento que queda instalado en tu organización y no puede ser replicado ni compartido.
+        </p>
+
+        <ul class="checklist">
+          <li>Diagnóstico inicial del equipo y brechas de conocimiento en Secop 2</li>
+          <li>Sesiones personalizadas según los procesos reales de tu empresa</li>
+          <li>Tarifa por persona capacitada + horas de formación</li>
+          <li>Modalidad presencial en Cali o virtual para equipos en todo Colombia</li>
+          <li>Acceso a plantillas, checklists y materiales exclusivos</li>
+          <li>Seguimiento post-capacitación en los primeros procesos reales</li>
+        </ul>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pc-icon">👥</div>
+            <h4>Por persona</h4>
+            <p>Tarifa por participante según tamaño del equipo y nivel de profundidad</p>
+          </div>
+          <div class="pricing-card">
+            <div class="pc-icon">⏱</div>
+            <h4>Por horas</h4>
+            <p>Paquetes flexibles de 4, 8 o 16 horas según las necesidades del equipo</p>
+          </div>
+          <div class="pricing-card">
+            <div class="pc-icon">📍</div>
+            <h4>Presencial</h4>
+            <p>Cali y área metropolitana. Incluye costo de desplazamiento si aplica</p>
+          </div>
+          <div class="pricing-card">
+            <div class="pc-icon">💻</div>
+            <h4>Virtual</h4>
+            <p>Para equipos en cualquier ciudad de Colombia. Plataforma a elección</p>
+          </div>
+        </div>
+
+        <a href="https://wa.me/57TUNUMERO?text=Hola%20Hugo%2C%20quiero%20cotizar%20una%20capacitaci%C3%B3n%20in-house%20para%20mi%20equipo" class="pill-dark" target="_blank" style="text-decoration:none">
+          Cotizar para mi empresa
+          <span class="circle">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 8h10M9 4l4 4-4 4"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ──────────────────────────────────────── -->
+<section class="about" id="sobre-mi">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <div class="about-photo">
+          <span class="photo-icon-big">📷</span>
+          <span class="photo-hint">Tu foto profesional aquí</span>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="s-label">Sobre mí</div>
+        <h2 class="s-title">Jurista técnico.<br><em>Estratega</em> corporativo.</h2>
+        <p class="s-body">
+          Soy Hugo Valencia, abogado con más de 8 años en contratación pública con el Estado colombiano y 6 años acompañando emprendedores desde la constitución de su empresa hasta su primer contrato estatal.
+        </p>
+        <p class="s-body">
+          Mi diferencial no es solo el conocimiento legal — es entender el negocio. Por eso mis clientes no solo se protegen, sino que crecen con una estructura que les abre puertas donde otros no pueden entrar.
+        </p>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <span class="tl-year">2016</span>
+            <span class="tl-text">Inicio en contratación pública. Primeros años asesorando empresas en procesos de licitación y selección abreviada.</span>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2018</span>
+            <span class="tl-text"><b>Secop 2:</b> Adopción y dominio de la plataforma desde su implementación obligatoria en Colombia.</span>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2020</span>
+            <span class="tl-text">Asesoría integral en creación de empresa del <b>sector gastronómico</b> y empresa del <b>sector turístico</b> en Cali.</span>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2023</span>
+            <span class="tl-text">Apoyo en la creación y puesta en funcionamiento de un <b>Departamento Administrativo</b> en la Alcaldía de Santiago de Cali.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHATSAPP CTA ────────────────────────────────── -->
+<section class="wa-section">
+  <div class="wa-card">
+    <div class="s-label" style="justify-content:center">Contacto directo</div>
+    <h2 class="s-title">¿Tienes una consulta<br><em>jurídica?</em></h2>
+    <p class="s-body">
+      Atiendo consultas en contratación pública, creación de empresas, registro de marca, estatutos, contratos y mitigación de riesgos. Respuesta en menos de 24 horas.
+    </p>
+    <a href="https://wa.me/57TUNUMERO?text=Hola%20Hugo%2C%20quiero%20consultar%20sobre%20un%20tema%20jur%C3%ADdico" class="btn-wa" target="_blank">
+      Escribir por WhatsApp
+      <span class="circle">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">Hugo <b>Valencia</b> · Abogado</div>
+  <p>Secop 2 · Derecho Corporativo · Contratación Pública · Cali, Colombia</p>
+  <p>© 2025 Hugo Valencia</p>
+</footer>
+
+<script>
+/* Scroll reveal — fade up on enter */
+const reveals = document.querySelectorAll(
+  '.svc-card, .inhouse-visual, .inhouse-content, .about-photo, .about-right, .tl-item, .pricing-card'
+);
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('revealed');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+reveals.forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(28px)';
+  el.style.transition = `opacity .7s ease ${i % 4 * 80}ms, transform .7s ease ${i % 4 * 80}ms`;
+  io.observe(el);
+});
+
+document.addEventListener('DOMContentLoaded', () => {});
+</script>
+
+<style>
+.revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+</style>
+
+</body>
+</html>
